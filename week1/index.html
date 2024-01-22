@@ -6,9 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Week1</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- 引入 Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <style>
+    
+    body {
+      font-family: Arial, sans-serif;
+    }
+
     img {
       object-fit: contain;
       max-width: 100%;
@@ -16,10 +22,26 @@
 
     .primary-image {
       height: 300px;
+      object-fit: contain;
     }
 
     .images {
       height: 150px;
+      max-width: 100%;
+    }
+
+    .card-title {
+      color: blue;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background-color: green;
+      border-color: green;
+    }
+
+    .card-text {
+      font-size: 14px;
     }
   </style>
 </head>
@@ -28,77 +50,78 @@
   <div id="app">
     <div class="container">
       <div class="row py-3">
-        <div class="col-md-6">
-          <h2>產品列表</h2>
-          <table class="table table-hover mt-4">
+        <!-- 父親節蛋糕 -->
+        <div class="col-12 col-md-8">
+          <h2>父親節 預售蛋糕列表</h2>
+          <table class="table table-hover">
             <thead>
               <tr>
-                <th width="150">產品名稱</th>
-                <th width="120">
-                  原價
-                </th>
-                <th width="120">
-                  售價
-                </th>
-                <th width="150">
-                  是否啟用
-                </th>
-                <th width="120">
-                  查看細節
-                </th>
+                <th width="150">商品名稱</th>
+                <th width="120">原價</th>
+                <th width="120">優惠價</th>
+                <th width="150">是否有貨</th>
+                <th width="120">MORE</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item) in products" v-bind:key="item.id">
-                <td width="150">{{ item.title }}</td>
-                <td width="120">
-                  {{ item.origin_price }}
-                </td>
-                <td width="120">
-                  {{ item.price }}
-                </td>
+              <tr v-for="(item, index) in products" :key="index">
+                <td width="150" v-text="item.title"></td>
+                <td width="120" v-text="item.Oldprice"></td>
+                <td width="120" v-text="item.Newprice"></td>
                 <td width="150">
-                  <span v-if="item.is_enabled" class="text-success">啟用</span>
-                  <span v-else>未啟用</span>
+                  <span :class="{ 'text-success': item.pstatus }">
+                    {{ item.pstatus ? '還有庫存' : '缺貨' }}
+                  </span>
                 </td>
                 <td width="120">
-                  <button type="button" class="btn btn-primary" v-on:click="tempProduct = item">查看細節</button>
+                  <!-- 使用 @click 綁定點擊事件 -->
+                  <button type="button" class="btn btn-primary" @click="tempProduct = item">看更多</button>
                 </td>
               </tr>
             </tbody>
           </table>
-          <p>目前有 <span>{{ products.length }}</span> 項產品</p>
+          <p>共有 <span v-text="products.length"></span> 品項</p>
         </div>
-        <div class="col-md-6">
-          <h2>單一產品細節</h2>
+        <!-- 商品資訊 -->
+        <div class="col-12 col-md-4">
+          <h2>商品資訊</h2>
           <div v-if="tempProduct.title">
             <div class="card mb-3">
-              <img v-bind:src="tempProduct.imageUrl" class="card-img-top primary-image" alt="主圖">
+              <!-- 圖片懶加載 -->
+              <img :src="tempProduct.imageUrl" class="card-img-top primary-image" alt="主圖" loading="lazy">
               <div class="card-body">
                 <h5 class="card-title">
-                  {{ tempProduct.title }}
-                  <span class="badge bg-primary ms-2">{{ tempProduct.category }}</span>
+                  <!-- 類別標籤 -->
+                  <span class="badge bg-primary ms-2" v-text="tempProduct.category"></span>
+
                 </h5>
-                <p class="card-text">商品描述：{{ tempProduct.description }}</p>
-                <p class="card-text">商品內容：{{ tempProduct.content }}</p>
+                <h3 class="card-title">
+                  <!-- 商品名稱 -->
+                  <span v-text="tempProduct.title"></span>
+                </h3>
+                <p class="card-text">商品描述：<span v-text="tempProduct.description"></span></p>
+                <p class="card-text">商品內容：尺寸<span v-text="tempProduct.content"></span></p>
                 <div class="d-flex">
-                  <p class="card-text me-2">{{ tempProduct.price }}</p>
-                  <p class="card-text text-secondary"><del>{{ tempProduct.origin_price }}</del></p>
-                  {{ tempProduct.unit }} / 個
+                  <p class="card-text me-2" v-text="tempProduct.Newprice" style="color: red;"></p>
+                  <p class="card-text text-secondary"><del v-text="tempProduct.Oldprice"></del></p>
+                  <span v-text="tempProduct.unit"></span> / 個
                 </div>
               </div>
             </div>
-            <span v-for="(image, id) in tempProduct.imagesUrl" v-bind:key="id">
-              <img v-if="image" v-bind:src="image" class="images m-2">
+            <!-- 顯示產品圖片 -->
+            <span v-for="(image, id) in tempProduct.imageUrlS" :key="id">
+              <img v-if="image" :src="image" class="images m-2" loading="lazy">
             </span>
           </div>
-          <p v-else class="text-secondary">請選擇一個商品查看</p>
+          <p v-else class="text-secondary">看更多有更多資訊</p>
         </div>
       </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+  <!-- 引入 Bootstrap JS 和 Vue.js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
   <script src="./index.js" type="module"></script>
 </body>
 
