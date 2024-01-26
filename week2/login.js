@@ -16,6 +16,10 @@ createApp({
   methods: {
     // 登錄函數
     login() {
+      if (!this.user.username || !this.user.password) {
+        alert('用戶名和密碼不能為空');
+        return; // 如果任何一個字段為空，則不進行後續操作
+      }
       // API的網址
       const api = 'https://vue3-course-api.hexschool.io/v2/admin/signin';
       // 使用axios發送POST請求到API，帶上使用者的用戶名和密碼
