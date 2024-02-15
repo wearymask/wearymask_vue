@@ -27,6 +27,7 @@ createApp({
       const url = `${this.apiUrl}/api/${this.apiPath}/admin/products`;
       axios.get(url)
         .then((response) => {
+          console.log(response)
           this.products = response.data.products;  // 存儲獲取的產品資料
         })
         .catch((err) => {

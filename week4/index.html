@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Wearymask | Account Sign In</title>
+  <!-- SEO Meta Tags-->
+  <meta name="description" content="Wearymask - Bootstrap E-commerce Template" />
+  <meta name="keywords"
+    content="bootstrap, shop, e-commerce, market, modern, responsive,  business, mobile, bootstrap, html5, css3, js, gallery, slider, touch, creative, clean" />
+  <meta name="author" content="Wearymask Studio" />
+  <!-- Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Favicon and Touch Icons-->
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png" />
+  <link rel="manifest" href="../site.webmanifest" />
+  <link rel="mask-icon" color="#fe6a6a" href="../safari-pinned-tab.svg" />
+  <meta name="msapplication-TileColor" content="#ffffff" />
+  <meta name="theme-color" content="#ffffff" />
+  <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
+  <link rel="stylesheet" media="screen" href="../vendor/simplebar/dist/simplebar.min.css" />
+  <link rel="stylesheet" media="screen" href="../vendor/tiny-slider/dist/tiny-slider.css" />
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" href="../css/theme.min.css" />
+</head>
+<!-- Body-->
+
+<body class="handheld-toolbar-enabled">
+  <!-- Sign in / sign up modal-->
+
+  <main class="page-wrapper">
+    <!-- Navbar 3 Level (Light)-->
+    <header class="shadow-sm">
+      <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
+      <div class="navbar-sticky bg-light">
+        <div class="navbar navbar-expand-lg navbar-light">
+          <div class="container">
+            <a class="navbar-brand d-none d-sm-block flex-shrink-0" href="../index.html"><img src="../img/logo-dark.png"
+                width="142" alt="Wearymask" /></a><a class="navbar-brand d-sm-none flex-shrink-0 me-2"
+              href="../index.html"><img src="../img/logo-icon.png" width="74" alt="Wearymask" /></a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div id="app">
+      <login-form></login-form>
+    </div>
+  </main>
+  <!-- Footer-->
+  <footer class="footer bg-dark pt-5">
+    <div class="pt-5 bg-darker">
+      <div class="container">
+        <div class="row pb-3">
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="d-flex">
+              <i class="ci-rocket text-primary" style="font-size: 2.25rem"></i>
+              <div class="ps-3">
+                <h6 class="fs-base text-light mb-1">
+                  Fast and free delivery
+                </h6>
+                <p class="mb-0 fs-ms text-light opacity-50">
+                  Free delivery for all orders over $200
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="d-flex">
+              <i class="ci-currency-exchange text-primary" style="font-size: 2.25rem"></i>
+              <div class="ps-3">
+                <h6 class="fs-base text-light mb-1">Money back guarantee</h6>
+                <p class="mb-0 fs-ms text-light opacity-50">
+                  We return money within 30 days
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="d-flex">
+              <i class="ci-support text-primary" style="font-size: 2.25rem"></i>
+              <div class="ps-3">
+                <h6 class="fs-base text-light mb-1">24/7 customer support</h6>
+                <p class="mb-0 fs-ms text-light opacity-50">
+                  Friendly 24/7 customer support
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="d-flex">
+              <i class="ci-card text-primary" style="font-size: 2.25rem"></i>
+              <div class="ps-3">
+                <h6 class="fs-base text-light mb-1">Secure online payment</h6>
+                <p class="mb-0 fs-ms text-light opacity-50">
+                  We possess SSL / Secure сertificate
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="hr-light mb-5" />
+        <div class="row pb-2">
+          <div class="col-md-6 text-center text-md-start mb-4">
+            <div class="text-nowrap mb-4">
+              <a class="d-inline-block align-middle mt-n1 me-3" href="#"><img class="d-block"
+                  src="../img/footer-logo-light.png" width="117" alt="Wearymask" /></a>
+            </div>
+          </div>
+          <div class="col-md-6 text-center text-md-end mb-4">
+            <img class="d-inline-block" src="../img/cards-alt.png" width="187" alt="Payment methods" />
+          </div>
+        </div>
+        <div class="pb-4 fs-xs text-light opacity-50 text-center text-md-start">
+          © All rights reserved. Made by
+          <a class="text-light" href="#" target="_blank" rel="noopener">Wearymask Studio</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back To Top Button-->
+  <a class="btn-scroll-top" href="#top" data-scroll><span
+      class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">
+    </i></a>
+
+  <!-- VUE template Start-->
+  <script type="text/x-template" id="loginFormTemplate">
+      <div class="container py-4 py-lg-5 my-4">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <h2 class="h4 mb-1">Sign in</h2>
+                <hr />
+                <h3 class="fs-base pt-4 pb-2">Or using form below</h3>
+                <form class="needs-validation" @submit.prevent="login" novalidate>
+                  <div class="input-group mb-3">
+                    <i class="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+                    <input class="form-control rounded-start" type="email" placeholder="Email" v-model="user.username" required autocomplete="username"/>
+                  </div>
+                  <div class="input-group mb-3">
+                    <i class="ci-locked position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+                    <input class="form-control" type="password" placeholder="Password" v-model="user.password" required autocomplete="current-password"/>
+                  </div>
+                  <div class="text-end pt-4">
+                    <button class="btn btn-primary" type="submit">
+                      <i class="ci-sign-in me-2 ms-n21"></i>Sign In
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </script>
+  <!-- VUE template End-->
+
+  
+  <!-- Vendor scrits: js libraries and plugins-->
+  <script src="../vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/simplebar/dist/simplebar.min.js"></script>
+  <script src="../vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="../vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  <!-- Main theme script-->
+  <script src="../js/theme.min.js"></script>
+  <script src="./login.js" type="module"></script>
+</body>
+
+</html>

@@ -31,7 +31,9 @@ createApp({
         // 將token寫入cookie，並設置過期時間
         document.cookie = `hexToken=${token};expires=${new Date(expired)}; path=/`;
         // 登錄成功後跳轉到產品頁面
+        //window.location = 'products.html';
         window.location = 'account-Products.html';
+        
       }).catch((err) => {
         // 如果有錯誤，將錯誤列印到控制台並彈出錯誤消息
         console.log(err)
