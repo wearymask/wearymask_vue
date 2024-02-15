@@ -106,7 +106,7 @@
                                             href="../index.html">
                                             <i class="ci-package opacity-60 me-2"></i>Products
                                             <span class="badge bg-info fs-sm ms-auto" data-bs-toggle="tooltip"
-                                                title="Reward points">{{ products.length }}</span>
+                                                title="Reward points">{{ allproducts.length }}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -273,7 +273,7 @@
         <add-product-modal ref="addproduct" :product="tempProduct" :is-new="isNew"@update="getData"></add-product-modal>
         <del-product-modal ref="delProduct" :item="tempProduct" @update="getData"></del-product-modal>
         <sho-product-modal ref="shoProduct" :item="tempProduct"></sho-product-modal>
-        <update-image-modal ref="updateImageModal" @update:imagesUrl="handleImagesUrlUpdate"></update-image-modal>
+        <update-image-modal ref="updateImageModal"></update-image-modal>
 
         <!-- Modal -->
     </div>

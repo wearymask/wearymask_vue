@@ -2,27 +2,28 @@ import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 
 let addProductModal = null; // 用於存儲添加產品模態框的實例
 let delProductModal = null; // 用於存儲刪除產品模態框的實例
-let shoProductModal = null;
-let UPProduct = null;
+let shoProductModal = null; // 用於存儲顯示產品詳情的模態框實例
+let UPProduct = null; // 用於存儲更新圖片模態框的實例
 
-let apiU = "https://vue3-course-api.hexschool.io/v2";
-let apiP = "wearymask";
-let locationView = "index.html";
+let apiU = "https://vue3-course-api.hexschool.io/v2"; // API 基礎 URL
+let apiP = "wearymask"; // API 路徑
+let locationView = "index.html"; // 登入頁面的位置
 
 const app = createApp({
   data() {
     return {
       apiUrl: apiU, // API 基礎 URL
       apiPath: apiP, // API 路徑
-      products: [], // 存儲產品資料
-      pagination: {},
+      products: [], // 存儲產品資料的陣列
+      allproducts: [], // 存儲產品資料的陣列
+      pagination: {}, // 分頁資料
       suid: "", // 存儲使用者ID
-      isNew: false, // 判斷是新建還是編輯產品
+      isNew: false, // 判斷是新建還是編輯產品的標誌
       currentYear: new Date().getFullYear(), // 當前年份，用於版權聲明
-      updateimagesUrl: [],
+      updateimagesUrl: [], // 用於存儲更新圖片的 URL
       tempProduct: {
         imagesUrl: [],
-      }, // 臨時存儲選中的產品資訊
+      }, // 臨時存儲選中的產品資訊，用於編輯或新增
     };
   },
   mounted() {
@@ -42,9 +43,10 @@ const app = createApp({
         .post(url)
         .then((response) => {
           if (response.data.success) {
-            this.suid = response.data.uid;
+            this.suid = response.data.uid; // 存儲使用者ID
           }
           this.getData(); // 如果許可權驗證成功，獲取產品資料
+          
         })
         .catch((err) => {
           alert(err.response.data.message); // 顯示錯誤資訊
@@ -59,16 +61,27 @@ const app = createApp({
         .get(url)
         .then((response) => {
           const { products, pagination } = response.data;
-          this.products = products;
-          this.pagination = pagination;
+          this.products = products; // 更新產品資料
+          this.pagination = pagination; // 更新分頁資料
         })
         .catch((err) => {
           alert(err.response.data.message); // 顯示錯誤資訊
-          window.location = locationView; // 許可權驗證失敗，跳轉到登錄頁面
+          window.location = locationView; // 出現錯誤時跳轉到登錄頁面
         });
+
+        const url2 = `${this.apiUrl}/api/${this.apiPath}/admin/products`;
+        axios
+          .get(url2)
+          .then((response) => {
+            this.allproducts = response.data.products; // 直接使用返回的產品列表賦值
+          })
+          .catch((err) => {
+            console.log(err.response.data.message); // 顯示錯誤資訊
+          });
+
     },
 
-    // 打開模態框（新增、編輯、刪除）
+    // 打開模態框（新增、編輯、刪除、顯示詳情、更新圖片）
     openModal(isNew, item) {
       if (isNew === "new") {
         this.tempProduct = { imagesUrl: [] };
@@ -83,12 +96,10 @@ const app = createApp({
         delProductModal.show(); // 顯示刪除產品模態框
       } else if (isNew === "show") {
         this.tempProduct = { ...item };
-        shoProductModal.show();
+        shoProductModal.show(); // 顯示產品詳情模態框
       } else if (isNew === "UpdateImage") {
-        UPProduct.show();    
+        UPProduct.show();    // 顯示更新圖片模態框
       }
-
-      
     },
 
     // 登出
@@ -97,7 +108,7 @@ const app = createApp({
       axios
         .post(url)
         .then(() => {
-          window.location = locationView; // 跳轉到登錄頁面
+          window.location = locationView; // 登出成功後跳轉到登錄頁面
         })
         .catch((err) => {
           alert(err.response.data.message); // 顯示錯誤資訊
